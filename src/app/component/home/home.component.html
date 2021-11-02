@@ -1,5 +1,5 @@
 <div *ngFor = "let page of onpage ">
-<div *ngIf="page.status == '0'">
+<div *ngIf="page.status == '0' && page.activated == false" >
 <h3 style="text-align: center; color: brown;">The Most Poupulated Countries</h3>
 <div class="card-group"  >
     <div class="card" *ngFor = "let countrys of sortPeople let i = index;" >
@@ -36,14 +36,18 @@
         <p class="card-text">{{details.people}} People</p>
         <p class="card-text">{{details.description}}</p>
         <p class="card-text"><small class="text-muted">{{details.large}} KM</small></p>
+        <div *ngFor="let page of onpage">
+          <button *ngIf="page.status == '0' && page.activated == true"  (click)="backTo2(details.id)">Back To </button>
+        </div>
       </div>
 </div>
 <div *ngFor="let page of onpage">
     <button *ngIf="page.status == '0' && page.activated == false" (click)="showall()">Show All Countries</button>
 </div>
 <div *ngFor="let page of onpage">
-    <button *ngIf="page.status == '1'" (click)="backTo()">Back To </button>
+  <button *ngIf="page.status == '1'" (click)="backTo()">Back To </button>
 </div>
+
 
 <div *ngFor = "let page of onpage ">
     <div *ngIf="page.status == '1'">

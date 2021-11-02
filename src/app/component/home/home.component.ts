@@ -13,7 +13,8 @@ export class HomeComponent implements OnInit {
   @Output() newEvent = new EventEmitter<Country>();
   onpage: StatusOfPage[] = [
     {
-      "status": "0"
+      "status": "0",
+      "activated" : false
     }
   ]
 
@@ -85,6 +86,14 @@ export class HomeComponent implements OnInit {
     this.onpage.map((v) =>{
       v.status = '0';
       console.log(v)
+      return v
+    })
+  }
+  backTo2(id:number){
+    const newid = id-1
+    this.setActivated()
+    this.country.map((v, i) =>{
+      if(i==newid) v.visible = !v.visible;
       return v
     })
   }
